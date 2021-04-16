@@ -56,6 +56,16 @@ This indicates that, by default, any cookies decorated with 'sprinkles' or
 now be prompted if they want to include the optional features 'sprinkles'
 and 'frosting'
 
+Finally, due to [this issue on the cookiecutter github repo](https://github.com/cookiecutter/cookiecutter/issues/1518)
+you will need to install a post-gen project hook to cleanup the directories
+that you intend to omit. Add a `hooks` directory in your template with a
+file called `post_gen_project.py`. That file needs to contain this:
+```python
+from cutout import cleanup
+
+cleanup()
+```
+
 That's it. You should be ready to make some cookies now!
 
 

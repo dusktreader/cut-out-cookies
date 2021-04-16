@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cut-out-cookies"
-version = "0.1.1"
+version = "0.1.2"
 description = "Jinja extension for optionally including files and directories"
 authors = ["Tucker Beck <tucker.beck@gmail.com>"]
 readme = "README.md"

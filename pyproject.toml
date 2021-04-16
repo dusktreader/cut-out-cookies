@@ -1,9 +1,12 @@
 [tool.poetry]
 name = "cut-out-cookies"
-version = "0.1.0"
+version = "0.1.1"
 description = "Jinja extension for optionally including files and directories"
 authors = ["Tucker Beck <tucker.beck@gmail.com>"]
+readme = "README.md"
 license = "MIT"
+homepage = "https://github.com/dusktreader/cut-out-cookies"
+repository = "https://github.com/dusktreader/cut-out-cookies"
 packages = [ { include = "cutout" } ]
 
 [tool.poetry.dependencies]

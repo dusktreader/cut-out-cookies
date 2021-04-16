@@ -16,6 +16,7 @@ black = "^20.8b1"
 isort = "^5.8.0"
 pytest-random-order = "^1.0.4"
 cookiecutter = "^1.7.2"
+snick = "^1.0.0"
 
 [tool.black]
 line-length = 120

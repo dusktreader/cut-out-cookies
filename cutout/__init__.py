@@ -1,1 +1,1 @@
-from cutout.jinja_extension import Stencil
+from cutout.stencil import Stencil

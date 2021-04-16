@@ -1,0 +1,8 @@
+{
+    "project_name": "cut-out-test",
+    "include_foo": false,
+    "include_bar": false,
+    "include_baz": false,
+    "include_qux": false,
+    "_extensions": ["cutout.Stencil"]
+}

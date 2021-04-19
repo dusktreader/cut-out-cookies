@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v0.1.3 - 2021-04-19
+- Updated documentation
+
 ## v0.1.2 - 2021-04-16
 - Added tool for cleanup in post-build hook
 - See this issue for motive: https://github.com/cookiecutter/cookiecutter/issues/1518

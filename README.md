@@ -84,17 +84,17 @@ sugar-cookies/
 ### Optionally including a file
 
 To indicate that a file should only be included if a certain pattern is
-included, you use the `stencil_path` filter in its template filename.
+included, you use the `stencil` filter in its template filename.
 
 Let's create a file called 'tasty.py' that should only be included if the
-'sprinkles' pattern is applied. To do that, we'll apply the `stencil_path`
+'sprinkles' pattern is applied. To do that, we'll apply the `stencil`
 filter like so:
 ```
 examples/
 ├── cookiecutter.json
 └── {{cookiecutter.project_name}}
     ├── README.md
-    └── {{'tasty.py'|stencil_path('sprinkles')}}
+    └── {{'tasty.py'|stencil('sprinkles')}}
 ```
 
 Now if the `include_sprinkles` setting is enabled in cookiecutter, the rendered
@@ -105,7 +105,14 @@ source file will be omitted altogether
 ### Optionally including a directory
 
 To indicate that a directory should only be included if a certain pattern is
-included, you use the `stencil_path` filter in its name just like for files.
+included, you use the `stencil_path` filter in its name. Unfortunately, the
+`stencil` filter cannot be used for directories due to
+[this issue](https://github.com/cookiecutter/cookiecutter/issues/1518). The
+`stencil_path` causes non-matching directories to be renamed to 'None'. Then,
+a post-gen hook can be used to remove these directories. This approach is a
+bit of a hack, but until the mentioned issue is fixed, we've tried to make it
+as painless as possible by including a `cleanup` function that can be easily
+added to a `post_gen_project` hook.
 
 Let's create a diretory called 'batch' that should only be included if the
 'frosting' pattern is included. To do that, we'll apply the `stencil_path` filter
@@ -113,6 +120,8 @@ like so:
 ```
 examples/
 ├── cookiecutter.json
+├── hooks/
+│   └── post_gen_project.py
 └── {{cookiecutter.project_name}}
     ├── README.md
     └── {{'batch'|stencil_path('frosting')}}
@@ -122,8 +131,16 @@ examples/
 
 Now if the `include_frosting` setting is enabled in cookiecutter, the rendered
 project will have a directory called `batch` that includes two file called
-`star_shaped.py` and `heart_shaped.py`. If it is not enabled, the entire directory
-will not be included.
+`star_shaped.py` and `heart_shaped.py`. If it is not enabled, the directory will
+be named 'None' in the generated project. If you have the `post_gen_project` hook
+defined like this:
+
+```python
+from cutout import cleanup
+cleanup()
+```
+
+Then the non-matching directories will be removed after project generation.
 
 
 ### Optionally include a block of text

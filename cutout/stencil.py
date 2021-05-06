@@ -1,8 +1,11 @@
 import jinja2
 import jinja2.ext
+from cutout.constants import STENCIL_PATH_PREFIX
 
 
 class Stencil(jinja2.ext.Extension):
+    counter = 0
+
     def __init__(self, environment, *args, **kwargs):
         @jinja2.contextfilter
         def stencil(ctx, value, pattern):
@@ -12,14 +15,14 @@ class Stencil(jinja2.ext.Extension):
                 included = included.lower() == "true"
             return value if included else ""
 
-        def null(value):
-            return None if value == "" else value
-
         @jinja2.contextfilter
         def stencil_path(ctx, value, pattern):
-            return null(stencil(ctx, value, pattern))
+            rendered_value = stencil(ctx, value, pattern)
+            if rendered_value == "":
+                self.counter += 1
+                return f"{STENCIL_PATH_PREFIX}{value}"
+            return rendered_value
 
         environment.filters["stencil"] = stencil
-        environment.filters["null"] = null
         environment.filters["stencil_path"] = stencil_path
         super().__init__(environment)

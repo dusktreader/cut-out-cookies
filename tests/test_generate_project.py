@@ -1,4 +1,5 @@
 from cookiecutter.main import cookiecutter as bake
+from cutout.constants import STENCIL_PATH_PREFIX
 
 
 class TestBuild:
@@ -13,8 +14,9 @@ class TestBuild:
         assert (
             "This should only be included if the 'qux' pattern is applied" not in (build_path / "boring.py").read_text()
         )
-        assert not (build_path / "None").exists()
         assert not (build_path / "baz").exists()
+        assert not (build_path / "garply").exists()
+        assert len(list(build_path.glob(f"**/{STENCIL_PATH_PREFIX}*"))) == 0
         assert "foo" not in (build_path / "README.md").read_text()
         assert "bar" not in (build_path / "README.md").read_text()
         assert "baz" not in (build_path / "README.md").read_text()
@@ -31,8 +33,9 @@ class TestBuild:
         assert (
             "This should only be included if the 'qux' pattern is applied" not in (build_path / "boring.py").read_text()
         )
-        assert not (build_path / "None").exists()
         assert not (build_path / "baz").exists()
+        assert not (build_path / "garply").exists()
+        assert len(list(build_path.glob(f"**/{STENCIL_PATH_PREFIX}*"))) == 0
         assert "foo" in (build_path / "README.md").read_text()
         assert "bar" not in (build_path / "README.md").read_text()
         assert "baz" not in (build_path / "README.md").read_text()
@@ -49,8 +52,9 @@ class TestBuild:
         assert (
             "This should only be included if the 'qux' pattern is applied" not in (build_path / "boring.py").read_text()
         )
-        assert not (build_path / "None").exists()
         assert not (build_path / "baz").exists()
+        assert not (build_path / "garply").exists()
+        assert len(list(build_path.glob(f"**/{STENCIL_PATH_PREFIX}*"))) == 0
         assert "foo" not in (build_path / "README.md").read_text()
         assert "bar" in (build_path / "README.md").read_text()
         assert "baz" not in (build_path / "README.md").read_text()
@@ -67,8 +71,9 @@ class TestBuild:
         assert (
             "This should only be included if the 'qux' pattern is applied" not in (build_path / "boring.py").read_text()
         )
-        assert not (build_path / "None").exists()
         assert (build_path / "baz").exists()
+        assert not (build_path / "garply").exists()
+        assert len(list(build_path.glob(f"**/{STENCIL_PATH_PREFIX}*"))) == 0
         assert "foo" not in (build_path / "README.md").read_text()
         assert "bar" not in (build_path / "README.md").read_text()
         assert "baz" in (build_path / "README.md").read_text()
@@ -83,8 +88,9 @@ class TestBuild:
         assert (build_path / "boring.py").exists()
         assert "I am source code in boring.py" in (build_path / "boring.py").read_text()
         assert "This should only be included if the 'qux' pattern is applied" in (build_path / "boring.py").read_text()
-        assert not (build_path / "None").exists()
         assert not (build_path / "baz").exists()
+        assert not (build_path / "garply").exists()
+        assert len(list(build_path.glob(f"**/{STENCIL_PATH_PREFIX}*"))) == 0
         assert "foo" not in (build_path / "README.md").read_text()
         assert "bar" not in (build_path / "README.md").read_text()
         assert "baz" not in (build_path / "README.md").read_text()

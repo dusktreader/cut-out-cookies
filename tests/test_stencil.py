@@ -1,6 +1,7 @@
 import jinja2
 import pytest
 import snick
+from cutout.constants import STENCIL_PATH_PREFIX
 
 
 class TestStencil:
@@ -39,19 +40,6 @@ class TestStencil:
             """
         )
 
-    def test_stencil_path__returns_None_if_tag_is_not_included(self):
+    def test_stencil_path__returns_a_special_flag_string_if_tag_is_not_included(self):
         template = self.jinja_env.from_string("""{{'test.py'|stencil_path('foo')}}""")
-        assert template.render(cookiecutter=dict(include_foo=False)) == "None"
-
-    def test_stencil_path__is_equivalent_of_stencil_and_null(self):
-        template1 = self.jinja_env.from_string("""{{'test.py'|stencil('foo')|null}}""")
-        template2 = self.jinja_env.from_string("""{{'test.py'|stencil_path('foo')}}""")
-        assert (
-            template1.render(
-                cookiecutter=dict(include_foo=False),
-            )
-            == template2.render(
-                cookiecutter=dict(include_foo=False),
-            )
-            == "None"
-        )
+        assert template.render(cookiecutter=dict(include_foo=False)).startswith(STENCIL_PATH_PREFIX)

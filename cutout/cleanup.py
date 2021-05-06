@@ -4,6 +4,8 @@ https://stackoverflow.com/a/57892171/642511
 """
 import pathlib
 
+from cutout.constants import STENCIL_PATH_PREFIX
+
 
 def rm_tree(path: pathlib.Path):
     """
@@ -19,6 +21,6 @@ def rm_tree(path: pathlib.Path):
 
 
 def cleanup():
-    for match in pathlib.Path().glob("**/None"):
+    for match in pathlib.Path().glob(f"**/{STENCIL_PATH_PREFIX}*"):
         if match.is_dir():
             rm_tree(match)

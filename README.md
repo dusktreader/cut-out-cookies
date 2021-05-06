@@ -108,11 +108,12 @@ To indicate that a directory should only be included if a certain pattern is
 included, you use the `stencil_path` filter in its name. Unfortunately, the
 `stencil` filter cannot be used for directories due to
 [this issue](https://github.com/cookiecutter/cookiecutter/issues/1518). The
-`stencil_path` causes non-matching directories to be renamed to 'None'. Then,
-a post-gen hook can be used to remove these directories. This approach is a
-bit of a hack, but until the mentioned issue is fixed, we've tried to make it
-as painless as possible by including a `cleanup` function that can be easily
-added to a `post_gen_project` hook.
+`stencil_path` causes non-matching directories to be Prefixed with a special
+flag value ('OBSCURATA_LAMINA_INTERRASILIS'). Then, a post-gen hook can be used
+to remove these directories.  This approach is a bit of a hack, but until the
+mentioned issue is fixed, we've tried to make it as painless as possible by
+including a `cleanup` function that can be easily added to a `post_gen_project`
+hook.
 
 Let's create a diretory called 'batch' that should only be included if the
 'frosting' pattern is included. To do that, we'll apply the `stencil_path` filter
@@ -132,8 +133,8 @@ examples/
 Now if the `include_frosting` setting is enabled in cookiecutter, the rendered
 project will have a directory called `batch` that includes two file called
 `star_shaped.py` and `heart_shaped.py`. If it is not enabled, the directory will
-be named 'None' in the generated project. If you have the `post_gen_project` hook
-defined like this:
+be named 'OBSCURATA_LAMINA_INTERRASILIS--batch' in the generated project. If you
+have the `post_gen_project` hook defined like this:
 
 ```python
 from cutout import cleanup

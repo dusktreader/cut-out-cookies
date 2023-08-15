@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cut-out-cookies"
-version = "0.2.0"
+version = "0.3.0"
 description = "Jinja extension for optionally including files and directories"
 authors = ["Tucker Beck <tucker.beck@gmail.com>"]
 readme = "README.md"
@@ -11,7 +11,7 @@ packages = [ { include = "cutout" } ]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-Jinja2 = "^2.11.3"
+Jinja2 = ">=2.11.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.3"
@@ -21,6 +21,9 @@ pytest-random-order = "^1.0.4"
 cookiecutter = "^1.7.2"
 snick = "^1.0.0"
 ipdb = "^0.13.7"
+
+[tool.poetry.group.dev.dependencies]
+nox = "^2023.4.22"
 
 [tool.black]
 line-length = 120

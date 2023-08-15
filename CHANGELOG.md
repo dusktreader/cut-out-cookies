@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v0.3.0 - 2023-08-14
+- Added support for Jinja 3
+- Added noxfile for matrix testing across multiple versions of python and jinja2.
+
 ## v0.2.0 - 2021-05-06
 - Removed `null` filter
 - Adjusted `stencil_path` to render with a special prefix instead of resolving to `None`

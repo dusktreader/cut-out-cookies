@@ -1,0 +1,17 @@
+name: Run QA Checks on Push
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Use Nox
+      uses: excitedleigh/setup-nox@v2.0.0
+      run: nox

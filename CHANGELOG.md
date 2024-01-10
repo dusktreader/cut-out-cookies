@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v0.3.1 - 2024-01-10
+- Restricted version to less than 3.1.0 since `contextfilter` was replaced.
+
 ## v0.3.0 - 2023-08-14
 - Added support for Jinja 3
 - Added noxfile for matrix testing across multiple versions of python and jinja2.

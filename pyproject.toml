@@ -11,7 +11,7 @@ packages = [ { include = "cutout" } ]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-Jinja2 = ">=2.11.3"
+Jinja2 = ">=2.11.3, <3.1.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.3"
